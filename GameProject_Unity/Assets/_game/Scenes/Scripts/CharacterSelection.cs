@@ -13,9 +13,9 @@ public class CharacterSelection : MonoBehaviour
     {
         characters = new List<GameObject>(); 
 
-        foreach (var character in Models)
+        foreach (var Models in Models)
         {
-            GameObject go = Instantiate(character.Character, Spot.position, Quaternion.identity);
+            GameObject go = Instantiate(Models.Character, Spot.position, Quaternion.identity);
             go.SetActive(false);
             go.transform.SetParent(Spot);
             characters.Add(go);
