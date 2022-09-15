@@ -7,14 +7,16 @@ public class CharacterSelection : MonoBehaviour
     public Models[] Models;
     public Transform Spot;
     public Transform[] characterPanel = new Transform[5];
-    private int currentPanel = 0;
+    public int currentPanel = 0;
+    public GameObject spriteIcon;
+    public int currentCharacter;
     public GameObject play;
 
     private List<GameObject> characters;
-    private int currentCharacter;
-     void Start()
+    
+    void Start()
     {
-        characters = new List<GameObject>(); 
+        characters = new List<GameObject>();
 
         foreach (var Models in Models)
         {
@@ -25,7 +27,11 @@ public class CharacterSelection : MonoBehaviour
         }
         ShowCharacterFromList();
     }
-    
+
+    private void Update()
+    {
+        RemoveSelection();
+    }
     void ShowCharacterFromList()
     {
         characters[currentCharacter].SetActive(true);
@@ -36,7 +42,7 @@ public class CharacterSelection : MonoBehaviour
         characters[currentCharacter].SetActive(false);
         if (currentCharacter < characters.Count - 1)
             currentCharacter = currentCharacter + 1;
-        else 
+        else
             currentCharacter = 0;
         ShowCharacterFromList();
     }
@@ -54,14 +60,36 @@ public class CharacterSelection : MonoBehaviour
     {
         if (characterPanel != null)
         {
-            Instantiate(characters[currentCharacter], characterPanel[currentPanel].position, Quaternion.identity);
+          spriteIcon = Instantiate(characters[currentCharacter], characterPanel[currentPanel].position, Quaternion.identity);
             currentPanel++;
         }
-        
+
         if (currentPanel == 5)
         {
             play.SetActive(true);
         }
-        
+
+
+    }
+    public void RemoveSelection()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+           
+            
+
+            Debug.Log("Remove");
+            Destroy(spriteIcon);
+            currentPanel = currentPanel - 1;
+            
+            if (currentPanel < 0)
+            {
+                currentPanel = 0;
+            }
+           
+
+
+        }
+
     }
 }
