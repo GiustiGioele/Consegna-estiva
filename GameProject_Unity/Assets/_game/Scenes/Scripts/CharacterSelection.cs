@@ -8,6 +8,7 @@ public class CharacterSelection : MonoBehaviour
     public Transform Spot;
     public Transform[] characterPanel = new Transform[5];
     private int currentPanel = 0;
+    public GameObject play;
 
     private List<GameObject> characters;
     private int currentCharacter;
@@ -56,7 +57,11 @@ public class CharacterSelection : MonoBehaviour
             Instantiate(characters[currentCharacter], characterPanel[currentPanel].position, Quaternion.identity);
             currentPanel++;
         }
-       
+        
+        if (currentPanel == 5)
+        {
+            play.SetActive(true);
+        }
         
     }
 }
