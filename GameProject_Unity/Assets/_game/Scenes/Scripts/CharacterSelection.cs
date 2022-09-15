@@ -6,6 +6,8 @@ public class CharacterSelection : MonoBehaviour
 {
     public Models[] Models;
     public Transform Spot;
+    public Transform[] characterPanel = new Transform[5];
+    private int currentPanel = 0;
 
     private List<GameObject> characters;
     private int currentCharacter;
@@ -45,5 +47,16 @@ public class CharacterSelection : MonoBehaviour
         else
             currentCharacter = currentCharacter - 1;
         ShowCharacterFromList();
+    }
+
+    public void OnClickSelect()
+    {
+        if (characterPanel != null)
+        {
+            Instantiate(characters[currentCharacter], characterPanel[currentPanel].position, Quaternion.identity);
+            currentPanel++;
+        }
+       
+        
     }
 }

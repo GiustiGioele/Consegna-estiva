@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2356438000178588937}
   - component: {fileID: 4352608954913571833}
   m_Layer: 0
-  m_Name: CharacterIcon
+  m_Name: WizardSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
