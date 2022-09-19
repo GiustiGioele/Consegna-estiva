@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class CharacterSelection : MonoBehaviour
 {
     public Models[] Models;
@@ -67,18 +67,24 @@ public class CharacterSelection : MonoBehaviour
         if (currentPanel == 5)
         {
             play.SetActive(true);
+            
         }
 
+    }
 
+    public void PlayButton()
+    {
+        if (currentPanel == 5)
+        {
+            play.SetActive(true);
+            SceneManager.LoadScene(1);
+        }
     }
     public void RemoveSelection()
     {
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-           
-            
-
-            Debug.Log("Remove");
+            //Debug.Log("Remove");
             Destroy(spriteIcon);
             currentPanel = currentPanel - 1;
             

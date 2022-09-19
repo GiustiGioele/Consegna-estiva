@@ -6,9 +6,9 @@ using UnityEngine;
 public class Models : ScriptableObject
 {
     public string Name;
-    public string Type;
     public float HP;
     public float MP;
+    public GameObject spriteElement;
     public enum abilities { Slot1, Slot2, Slot3, Slot4 };
     public GameObject Character;
 }
