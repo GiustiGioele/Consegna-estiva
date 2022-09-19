@@ -978,6 +978,9 @@ MonoBehaviour:
   - {fileID: 1639629253}
   - {fileID: 922837916}
   - {fileID: 839272885}
+  currentPanel: 0
+  spriteIcon: {fileID: 0}
+  currentCharacter: 0
   play: {fileID: 455327416}
 --- !u!4 &1268253169
 Transform:
@@ -1860,8 +1863,8 @@ Camera:
   m_GameObject: {fileID: 1978014200}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.8301887, g: 0.58526987, b: 0.3250267, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
