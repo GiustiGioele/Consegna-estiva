@@ -34,6 +34,7 @@ public class BattleSystem2 : MonoBehaviour
        GameObject enemyGo =  Instantiate(enemyPrefab, enemyBattleStation);
         enemyBattle = enemyGo.GetComponent<BattleSystem>();
 
-       
+        playerHP.SetHp(playerBattle);
+        enemyHP.SetHp(enemyBattle);
     }
 }
