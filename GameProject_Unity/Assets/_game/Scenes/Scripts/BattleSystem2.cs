@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
 public class BattleSystem2 : MonoBehaviour
@@ -49,16 +50,57 @@ public class BattleSystem2 : MonoBehaviour
     {
         bool isDead = enemyBattle.TakeDamage(playerBattle.damage);
 
+       enemyHP.SetHP(enemyBattle.currentHP);
+
         yield return new WaitForSeconds(1f);
 
         if (isDead)
         {
-            //End the battle
+            state = BattleState.WON;
+            EndBattle();
         }else
         {
-            //Enemy turn 23.01
+            state = BattleState.ENEMYTURN;
+            StartCoroutine(EnemyTurn());
         }
 
+        IEnumerator EnemyTurn()
+        {
+            yield return new WaitForSeconds(1f);
+
+          bool isDead =  playerBattle.TakeDamage(enemyBattle.damage);
+
+            playerHP.SetHP(playerBattle.currentHP);
+
+            yield return new WaitForSeconds(1f);
+
+            if(isDead)
+            {
+                state = BattleState.LOST;
+                EndBattle();
+            }
+            else
+            {
+                state= BattleState.PLAYERTURN;
+                PlayerTurn();
+            }
+        }
+
+        void EndBattle()
+        {
+            if (state == BattleState.WON)
+            {
+
+            }else if (state == BattleState.LOST)
+            {
+
+            }
+        }
+
+        void PlayerTurn()
+        {
+
+        }
         
     }
 
