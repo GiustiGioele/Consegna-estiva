@@ -12,8 +12,8 @@ public class BattleSystem2 : MonoBehaviour
     public Transform[] playerBattleStation;
     public Transform[] enemyBattleStation;
 
-    BattleSystem playerBattle;
-    BattleSystem enemyBattle;
+    public BattleSystem playerBattle;
+    public BattleSystem enemyBattle;
 
     public BattleSystemHP playerHP;
     public BattleSystemHP enemyHP;

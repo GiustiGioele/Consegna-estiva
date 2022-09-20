@@ -6,17 +6,23 @@ public class CharacterSelection : MonoBehaviour
 {
     public Models[] Models;
     public Transform Spot;
+    public Transform spotElement;
     public Transform[] characterPanel = new Transform[5];
     public int currentPanel = 0;
     public GameObject spriteIcon;
+    public GameObject spriteElement;
     public int currentCharacter;
     public GameObject play;
-
-    private List<GameObject> characters;
+    public List<GameObject> player;
+    public List<GameObject> enemy;
+    public GameObject playerPrefab;
+    public List<GameObject> characters;
+    public List<GameObject> playerPrefabs;
     
     void Start()
     {
         characters = new List<GameObject>();
+        
 
         foreach (var Models in Models)
         {
@@ -24,6 +30,8 @@ public class CharacterSelection : MonoBehaviour
             go.SetActive(false);
             go.transform.SetParent(Spot);
             characters.Add(go);
+            
+            
         }
         ShowCharacterFromList();
     }
@@ -62,6 +70,7 @@ public class CharacterSelection : MonoBehaviour
         {
           spriteIcon = Instantiate(characters[currentCharacter], characterPanel[currentPanel].position, Quaternion.identity);
             currentPanel++;
+            player.Add(playerPrefabs[currentCharacter]);
         }
 
         if (currentPanel == 5)
@@ -77,6 +86,7 @@ public class CharacterSelection : MonoBehaviour
         if (currentPanel == 5)
         {
             play.SetActive(true);
+            TeamManager.Instance.SaveTeam(player);
             SceneManager.LoadScene(1);
         }
     }

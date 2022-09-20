@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &2457809
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2457810}
+  m_Layer: 0
+  m_Name: SpotSpriteElement
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2457810
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2457809}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 691, y: 493, z: -13}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &247850065
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,7 +508,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 455327419}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1268253168}
+        m_TargetAssemblyTypeName: CharacterSelection, Assembly-CSharp
+        m_MethodName: PlayButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &455327419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -540,7 +583,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 457355276}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 528, y: 493, z: -13}
+  m_LocalPosition: {x: 528, y: 428, z: -13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -804,6 +847,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 922837915}
   m_CullTransparentMesh: 1
+--- !u!1 &1175797709
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1175797711}
+  - component: {fileID: 1175797710}
+  m_Layer: 0
+  m_Name: TeamManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1175797710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175797709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fee79d7f110d42429e5b4edf1a774de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: []
+  enemy: []
+--- !u!4 &1175797711
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175797709}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 570.598, y: 159.29607, z: -13}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1219917898
 GameObject:
   m_ObjectHideFlags: 0
@@ -971,7 +1060,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 34573322339aab04dab378681f5eef9d, type: 2}
   - {fileID: 11400000, guid: faf3c880a12d11d45b21e42b3e24e1e8, type: 2}
   - {fileID: 11400000, guid: 0f28100357c62d64cb898a73252409df, type: 2}
+  - {fileID: 11400000, guid: 0dc45ca3001829c4980eb9054f9ce93d, type: 2}
+  - {fileID: 11400000, guid: 484b745b936a83043a17651e679a8052, type: 2}
   Spot: {fileID: 457355278}
+  spotElement: {fileID: 2457810}
   characterPanel:
   - {fileID: 1788772099}
   - {fileID: 1784008726}
@@ -980,8 +1072,19 @@ MonoBehaviour:
   - {fileID: 839272885}
   currentPanel: 0
   spriteIcon: {fileID: 0}
+  spriteElement: {fileID: 0}
   currentCharacter: 0
   play: {fileID: 455327416}
+  player: []
+  enemy: []
+  playerPrefab: {fileID: 0}
+  characters: []
+  playerPrefabs:
+  - {fileID: 8692363720184950885, guid: 603fb9afd9d6312428062428f4148424, type: 3}
+  - {fileID: 5255494163848898262, guid: f8d14fba9565ffe4db8bcf4a4ef34ad4, type: 3}
+  - {fileID: 1756176532121604502, guid: 5ddcd293b5d24ca419760173b0232202, type: 3}
+  - {fileID: 9092038824886079649, guid: 62281739d3c4f61438796d7540f5114d, type: 3}
+  - {fileID: 3657021321623110688, guid: 3c9b13840434c2345b0362a0fdb2282b, type: 3}
 --- !u!4 &1268253169
 Transform:
   m_ObjectHideFlags: 0
@@ -995,7 +1098,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1546880626
 GameObject:
