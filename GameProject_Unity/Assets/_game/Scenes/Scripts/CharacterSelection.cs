@@ -75,6 +75,7 @@ public class CharacterSelection : MonoBehaviour
 
         if (currentPanel == 5)
         {
+            EnemyCharacter();
             play.SetActive(true);
             
         }
@@ -86,7 +87,8 @@ public class CharacterSelection : MonoBehaviour
         if (currentPanel == 5)
         {
             play.SetActive(true);
-            TeamManager.Instance.SaveTeam(player);
+            TeamManager.Instance.SaveTeam(player,enemy);
+
             SceneManager.LoadScene(1);
         }
     }
@@ -107,5 +109,14 @@ public class CharacterSelection : MonoBehaviour
 
         }
 
+    }
+
+   void  EnemyCharacter()
+    {
+     for (int i = 0; i < Models.Length; i++)
+        {
+            int randomIndex = Random.Range(0, enemy.Count);
+            enemy.Add(Models[randomIndex].playerPrefab);
+        }
     }
 }

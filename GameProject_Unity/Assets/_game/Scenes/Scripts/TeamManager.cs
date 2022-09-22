@@ -8,6 +8,7 @@ public class TeamManager : MonoBehaviour
 
     public List<GameObject> player;
     public List<GameObject> enemy;
+    //public GameObject playerPrefab;
 
 
     private void Awake()
@@ -24,10 +25,10 @@ public class TeamManager : MonoBehaviour
 
      
     }
-    public void SaveTeam(List<GameObject> player)
+    public void SaveTeam(List<GameObject> player, List<GameObject> enemy)
     {
         this.player = new List<GameObject>(player);
-        //this.enemy = new List<GameObject>(enemy);
+        this.enemy = new List<GameObject>(enemy);
 
     }
 }

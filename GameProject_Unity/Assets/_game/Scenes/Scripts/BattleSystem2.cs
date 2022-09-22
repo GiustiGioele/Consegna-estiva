@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
 public class BattleSystem2 : MonoBehaviour
 {
-    public GameObject playerPrefab;
-    public GameObject enemyPrefab;
+    //public GameObject playerPrefab;
+    public TeamManager teamManager;
+
+   
 
     public Transform[] playerBattleStation;
     public Transform[] enemyBattleStation;
@@ -25,20 +27,23 @@ public class BattleSystem2 : MonoBehaviour
     {
         state = BattleState.START;
         StartCoroutine(SetupBattle());
+       
     }
 
    IEnumerator SetupBattle ()
     {
+        teamManager = FindObjectOfType<TeamManager>();
+
         for (int i = 0; i < playerBattleStation.Length; i++)
         {
-            GameObject playerGo = Instantiate(playerPrefab, playerBattleStation[i]);
-            playerBattle = playerGo.GetComponent<BattleSystem>();
+            GameObject go = Instantiate(teamManager.player[i], playerBattleStation[i].position, Quaternion.identity);
+            //playerBattle = go.GetComponent<BattleSystem>();
 
-            GameObject enemyGo = Instantiate(enemyPrefab, enemyBattleStation[i]);
-            enemyBattle = enemyGo.GetComponent<BattleSystem>();
+            GameObject enemyGo = Instantiate(teamManager.enemy[i], enemyBattleStation[i].position, Quaternion.identity);
+            //enemyBattle = enemyGo.GetComponent<BattleSystem>();
         }
-        playerHP.SetHp(playerBattle);
-        enemyHP.SetHp(enemyBattle);
+        //playerHP.SetHp(playerBattle);
+        //enemyHP.SetHp(enemyBattle);
 
         yield return new WaitForSeconds(1f);
 
