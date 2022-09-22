@@ -16,6 +16,6 @@ MonoBehaviour:
   HP: 0
   MP: 0
   spriteElement: {fileID: 0}
-  playerPrefab: {fileID: 1756176532121604502, guid: 5ddcd293b5d24ca419760173b0232202, type: 3}
-  enemyPrefab: {fileID: 1756176532121604502, guid: 5ddcd293b5d24ca419760173b0232202, type: 3}
+  playerPrefab: {fileID: 5550403740049913657, guid: 6fa73fd6e6549f545a2e1c8b322ab243, type: 3}
+  enemyPrefab: {fileID: 5550403740049913657, guid: 6fa73fd6e6549f545a2e1c8b322ab243, type: 3}
   Character: {fileID: 5550403740049913657, guid: 6fa73fd6e6549f545a2e1c8b322ab243, type: 3}

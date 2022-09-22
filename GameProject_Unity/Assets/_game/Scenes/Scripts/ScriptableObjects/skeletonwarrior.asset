@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5f8abbbef59da947a168a8a7d05ace4, type: 3}
-  m_Name: skeletonwarrior
+  m_Name: skeletonWarrior
   m_EditorClassIdentifier: 
   Name: skeletonWarrior
   HP: 0
   MP: 0
   spriteElement: {fileID: 0}
-  playerPrefab: {fileID: 9092038824886079649, guid: 62281739d3c4f61438796d7540f5114d, type: 3}
-  enemyPrefab: {fileID: 9092038824886079649, guid: 62281739d3c4f61438796d7540f5114d, type: 3}
+  playerPrefab: {fileID: 1083347087882096840, guid: 8c75932e071f93c44807096563da6055, type: 3}
+  enemyPrefab: {fileID: 1083347087882096840, guid: 8c75932e071f93c44807096563da6055, type: 3}
   Character: {fileID: 1083347087882096840, guid: 8c75932e071f93c44807096563da6055, type: 3}
