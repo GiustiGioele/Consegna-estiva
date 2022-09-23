@@ -2,14 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleSystem : MonoBehaviour
+public class Character : MonoBehaviour
 {
     public string unitName;
-    public int damage;
+    public float damage;
     public int maxHP;
-    public int currentHP;
+    public float currentHP;
+    [SerializeField] Models models;
 
-    public bool TakeDamage (int damage)
+    private void Start()
+    {
+        damage = models.damage;
+
+    }
+
+    public bool TakeDamage (float damage)
     {
         currentHP -= damage;
 

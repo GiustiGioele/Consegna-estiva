@@ -6,11 +6,13 @@ using UnityEngine;
 public class Models : ScriptableObject
 {
     public string Name;
-    public float HP;
+    public float maxHp;
     public float MP;
-    //public GameObject spriteElement;
+    public float damage;
+    public float currentHP;
+    
     public GameObject playerPrefab;
     public GameObject enemyPrefab;
-    public enum abilities { Slot1, Slot2, Slot3, Slot4 };
+    
     public GameObject Character;
 }

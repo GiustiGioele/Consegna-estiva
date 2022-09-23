@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
 public class BattleSystem2 : MonoBehaviour
 {
-    //public GameObject playerPrefab;
+    
     public TeamManager teamManager;
 
    
@@ -14,8 +14,8 @@ public class BattleSystem2 : MonoBehaviour
     public Transform[] playerBattleStation;
     public Transform[] enemyBattleStation;
 
-    public BattleSystem playerBattle;
-    public BattleSystem enemyBattle;
+    public Character playerBattle;
+    public Character enemyBattle;
 
     public BattleSystemHP playerHP;
     public BattleSystemHP enemyHP;
@@ -23,7 +23,7 @@ public class BattleSystem2 : MonoBehaviour
 
   public BattleState state;
 
-    private void Start()
+    private void Start()                            
     {
         state = BattleState.START;
         StartCoroutine(SetupBattle());
@@ -37,10 +37,10 @@ public class BattleSystem2 : MonoBehaviour
         for (int i = 0; i < playerBattleStation.Length; i++)
         {
             GameObject go = Instantiate(teamManager.player[i], playerBattleStation[i].position, Quaternion.identity);
-            //playerBattle = go.GetComponent<BattleSystem>();
+           playerBattle = go.GetComponent<Character>();
 
             GameObject enemyGo = Instantiate(teamManager.enemy[i], enemyBattleStation[i].position, Quaternion.identity);
-            //enemyBattle = enemyGo.GetComponent<BattleSystem>();
+            enemyBattle = enemyGo.GetComponent<Character> ();
         }
         //playerHP.SetHp(playerBattle);
         //enemyHP.SetHp(enemyBattle);
@@ -55,7 +55,7 @@ public class BattleSystem2 : MonoBehaviour
     {
         bool isDead = enemyBattle.TakeDamage(playerBattle.damage);
 
-       enemyHP.SetHP(enemyBattle.currentHP);
+       enemyHP.SetHP(enemyBattle.currentHP);          
 
         yield return new WaitForSeconds(1f);
 

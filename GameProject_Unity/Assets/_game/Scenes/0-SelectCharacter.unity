@@ -1082,9 +1082,9 @@ MonoBehaviour:
   playerPrefabs:
   - {fileID: 8692363720184950885, guid: 603fb9afd9d6312428062428f4148424, type: 3}
   - {fileID: 5255494163848898262, guid: f8d14fba9565ffe4db8bcf4a4ef34ad4, type: 3}
-  - {fileID: 1756176532121604502, guid: 5ddcd293b5d24ca419760173b0232202, type: 3}
   - {fileID: 9092038824886079649, guid: 62281739d3c4f61438796d7540f5114d, type: 3}
   - {fileID: 3657021321623110688, guid: 3c9b13840434c2345b0362a0fdb2282b, type: 3}
+  - {fileID: 1756176532121604502, guid: 5ddcd293b5d24ca419760173b0232202, type: 3}
 --- !u!4 &1268253169
 Transform:
   m_ObjectHideFlags: 0

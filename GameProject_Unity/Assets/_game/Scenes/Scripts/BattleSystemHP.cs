@@ -7,16 +7,20 @@ public class BattleSystemHP : MonoBehaviour
 {
     public Text nameText;
     public Slider hpSlider;
+    
 
-    public void SetHp(BattleSystem system)
+    
+
+    public void SetHp(Character system)
     {
         nameText.text = system.name;
         hpSlider.maxValue = system.maxHP;
         hpSlider.value = system.currentHP;
 
+
     }
 
-    public void SetHP (int hp)
+    public void SetHP (float hp)
     {
         hpSlider.value = hp;
     }
