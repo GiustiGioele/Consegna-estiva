@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
+public enum BattleState { START, PLAYERTURN, PLAYERATK, ENEMYTURN, ENEMYATK, WON, LOST }
 public class BattleSystem2 : MonoBehaviour
 {
     
     public TeamManager teamManager;
-
-   
 
     public Transform[] playerBattleStation;
     public Transform[] enemyBattleStation;
@@ -19,9 +17,12 @@ public class BattleSystem2 : MonoBehaviour
 
     public BattleSystemHP playerHP;
     public BattleSystemHP enemyHP;
- 
 
-  public BattleState state;
+    [SerializeField] LayerMask characterPlayer;
+    [SerializeField] LayerMask characterEnemy;
+    [SerializeField] Character characterSelected;
+   
+    public BattleState state;
 
     private void Start()                            
     {
@@ -36,11 +37,12 @@ public class BattleSystem2 : MonoBehaviour
 
         for (int i = 0; i < playerBattleStation.Length; i++)
         {
-            GameObject go = Instantiate(teamManager.player[i], playerBattleStation[i].position, Quaternion.identity);
-           playerBattle = go.GetComponent<Character>();
+            GameObject go = Instantiate(teamManager.player[i], playerBattleStation[i]);
+           //playerBattle = go.GetComponent<Character>();
 
-            GameObject enemyGo = Instantiate(teamManager.enemy[i], enemyBattleStation[i].position, Quaternion.identity);
-            enemyBattle = enemyGo.GetComponent<Character>();
+            GameObject enemyGo = Instantiate(teamManager.enemy[i], enemyBattleStation[i]);
+            enemyGo.layer = LayerMask.NameToLayer("characterEnemy");
+            //enemyBattle = enemyGo.GetComponent<Character>();
         }
         playerHP.SetHp(playerBattle);
         enemyHP.SetHp(enemyBattle);
@@ -104,6 +106,23 @@ public class BattleSystem2 : MonoBehaviour
 
         void PlayerTurn()
         {
+            if (Input.GetKey(KeyCode.Mouse1))
+            {
+
+                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, characterPlayer);   //Raycast che controlla se il personaggio ha il suo layer
+               if (hit.collider != null)
+               {
+                    var Character = hit.collider.GetComponent<Character>();
+                    float normalizedcurrentHP = (float)Character.currentHP / Character.maxHP;
+                    //healthBarBackground.SetActive(true);
+                    //healthBarPplayer.fillAmount = normalizedHealth
+                    //charcterSelected = Character;
+                    //buttonPanel.SetActive(true);
+
+
+               }
+            }
+           
 
         }
         
@@ -112,6 +131,46 @@ public class BattleSystem2 : MonoBehaviour
    public void OnAttackButton()
     {
         if (state != BattleState.PLAYERTURN)
+            StartCoroutine(PlayerAtk());
             return;
     }
+
+    IEnumerator PlayerAtk()
+    {
+        state = BattleState.PLAYERATK;
+        bool isGoing = false;
+        while (!isGoing)
+        {
+            if (Input.GetKey(KeyCode.Mouse1))
+            {
+                RaycastHit2D enemyHit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, characterEnemy);
+
+                if (characterSelected != null && enemyHit.collider != null)
+                {
+                    enemyHit.collider.GetComponent<Character>();
+                    state = BattleState.PLAYERTURN;
+                    isGoing = true;
+                }
+                var Character = enemyHit.collider.GetComponent<Character>();
+                float normalizedcurrentHP = (float)Character.currentHP / Character.maxHP;
+                //enemyHealtBarBackground.SetActive(true);
+                //healthBarEnemy.fillAmount = normalizedcurrentHP;
+
+            }
+            yield return null;
+        }
+
+        state = BattleState.ENEMYTURN;
+        EnemyTurn();
+               
+    }
+
+    void EnemyTurn()
+    {
+
+      
+
+
+    }
+        
 }

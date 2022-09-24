@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5804479769843389401}
   - component: {fileID: 8027326686564966749}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: idle-with-weapon-6
   m_TagString: Untagged
   m_Icon: {fileID: 0}

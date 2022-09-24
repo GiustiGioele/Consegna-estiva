@@ -15,4 +15,6 @@ public class Models : ScriptableObject
     public GameObject enemyPrefab;
     
     public GameObject Character;
+
+    public Attributes attribute;
 }

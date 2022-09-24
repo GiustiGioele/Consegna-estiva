@@ -6,8 +6,10 @@ public class Character : MonoBehaviour
 {
     public string unitName;
     public float damage;
-    public int maxHP;
+    public float maxHP;
     public float currentHP;
+    public Attributes attribute;
+     
     [SerializeField] Models models;
 
     private void Start()
@@ -16,13 +18,29 @@ public class Character : MonoBehaviour
 
     } 
 
-    public bool TakeDamage (float damage)   
+    public void TakeDamage (float damage, Attributes attributedmg)   
     {
-        currentHP -= damage;
+        if (attribute.weakness.Contains(attributedmg))
+        {
+            currentHP -= damage * 1.5f;
+        }
+        else if (attributedmg.weakness.Contains(attribute)) //la debolezza dell'attacco è il mio elemento mi fa la metà x0.5
+            {
+                currentHP -= damage * 0.5f;
+            }
+            else
+            {
+                currentHP -= damage;
+            }
 
         if (currentHP <= 0)
-            return true;
-        else
-            return false;
+        {
+            Die();
+        }
     }
+       public void Die()
+    {
+        Destroy(gameObject);
+    }
+    
 }
