@@ -8,7 +8,7 @@ public class TeamManager : MonoBehaviour
 
     public List<GameObject> player;
     public List<GameObject> enemy;
-    //public GameObject playerPrefab;
+   
 
 
     private void Awake()

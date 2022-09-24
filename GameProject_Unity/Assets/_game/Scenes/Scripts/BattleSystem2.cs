@@ -40,10 +40,10 @@ public class BattleSystem2 : MonoBehaviour
            playerBattle = go.GetComponent<Character>();
 
             GameObject enemyGo = Instantiate(teamManager.enemy[i], enemyBattleStation[i].position, Quaternion.identity);
-            enemyBattle = enemyGo.GetComponent<Character> ();
+            enemyBattle = enemyGo.GetComponent<Character>();
         }
-        //playerHP.SetHp(playerBattle);
-        //enemyHP.SetHp(enemyBattle);
+        playerHP.SetHp(playerBattle);
+        enemyHP.SetHp(enemyBattle);
 
         yield return new WaitForSeconds(1f);
 

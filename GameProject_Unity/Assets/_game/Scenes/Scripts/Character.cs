@@ -14,9 +14,9 @@ public class Character : MonoBehaviour
     {
         damage = models.damage;
 
-    }
+    } 
 
-    public bool TakeDamage (float damage)
+    public bool TakeDamage (float damage)   
     {
         currentHP -= damage;
 
