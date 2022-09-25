@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2356438000178588937}
   - component: {fileID: 4352608954913571833}
   - component: {fileID: -2053915649128128053}
+  - component: {fileID: -6082403797089198560}
   m_Layer: 6
   m_Name: WizardSprite
   m_TagString: Untagged
@@ -111,3 +112,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.15, y: 2.5}
   m_EdgeRadius: 0
+--- !u!114 &-6082403797089198560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8692363720184950885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83fb74acf8500354db272f8a59f710f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitName: wizard
+  damage: 0
+  maxHP: 0
+  currentHP: 0
+  attribute: {fileID: 11400000, guid: 56557d918793dc249a24324147ebe971, type: 2}
+  models: {fileID: 11400000, guid: 34573322339aab04dab378681f5eef9d, type: 2}

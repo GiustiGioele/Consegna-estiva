@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 893129589541746908}
   - component: {fileID: 8579987870606707273}
   - component: {fileID: 4877756054968714587}
+  - component: {fileID: -1091212134962388005}
   m_Layer: 6
   m_Name: idle-1 (2)
   m_TagString: Untagged
@@ -111,3 +112,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.42012239, y: 0.61587465}
   m_EdgeRadius: 0
+--- !u!114 &-1091212134962388005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9092038824886079649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83fb74acf8500354db272f8a59f710f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitName: Archer
+  damage: 0
+  maxHP: 0
+  currentHP: 0
+  attribute: {fileID: 11400000, guid: 56557d918793dc249a24324147ebe971, type: 2}
+  models: {fileID: 11400000, guid: 0f28100357c62d64cb898a73252409df, type: 2}

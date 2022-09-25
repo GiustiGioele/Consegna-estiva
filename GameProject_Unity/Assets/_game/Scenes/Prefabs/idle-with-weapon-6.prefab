@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5804479769843389401}
   - component: {fileID: 8027326686564966749}
   - component: {fileID: 12155283703002253}
+  - component: {fileID: -1190310918113905487}
   m_Layer: 6
   m_Name: idle-with-weapon-6
   m_TagString: Untagged
@@ -111,3 +112,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.49575105, y: 0.691358}
   m_EdgeRadius: 0
+--- !u!114 &-1190310918113905487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5255494163848898262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83fb74acf8500354db272f8a59f710f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitName: Swordsman
+  damage: 0
+  maxHP: 0
+  currentHP: 0
+  attribute: {fileID: 11400000, guid: 8e1e0876bec01224188d3142bd06d746, type: 2}
+  models: {fileID: 11400000, guid: faf3c880a12d11d45b21e42b3e24e1e8, type: 2}

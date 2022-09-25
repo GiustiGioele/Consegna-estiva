@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8618778542352859628}
   - component: {fileID: 2045656937145320715}
   - component: {fileID: 6954188033390028160}
+  - component: {fileID: -3567257174440819571}
   m_Layer: 6
   m_Name: idle-1 (1)
   m_TagString: Untagged
@@ -111,3 +112,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.42377824, y: 0.6344717}
   m_EdgeRadius: 0
+--- !u!114 &-3567257174440819571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3657021321623110688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83fb74acf8500354db272f8a59f710f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitName: skeletonWarrior
+  damage: 0
+  maxHP: 0
+  currentHP: 0
+  attribute: {fileID: 11400000, guid: 72838c0c5fa165043aab18e07fbc648d, type: 2}
+  models: {fileID: 11400000, guid: 0dc45ca3001829c4980eb9054f9ce93d, type: 2}

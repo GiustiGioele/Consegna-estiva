@@ -11,6 +11,8 @@ public class BattleSystem2 : MonoBehaviour
 
     public Transform[] playerBattleStation;
     public Transform[] enemyBattleStation;
+    public List<GameObject> enemies;
+    public List<GameObject> players;
 
     public Character playerBattle;
     public Character enemyBattle;
@@ -48,10 +50,13 @@ public class BattleSystem2 : MonoBehaviour
         {
             GameObject go = Instantiate(teamManager.player[i], playerBattleStation[i]);
             playerBattle = go.GetComponent<Character>();
+            players.Add(go);
+
 
             GameObject enemyGo = Instantiate(teamManager.enemy[i], enemyBattleStation[i]);
             enemyGo.layer = LayerMask.NameToLayer("characterEnemy");
-            //enemyBattle = enemyGo.GetComponent<Character>();
+            enemyBattle = enemyGo.GetComponent<Character>();
+            enemies.Add(enemyGo);
         }
         //playerHP.SetHp(playerBattle);
         //enemyHP.SetHp(enemyBattle);
@@ -119,15 +124,13 @@ public class BattleSystem2 : MonoBehaviour
 
    public void  PlayerTurn()
     {
-     
-           Debug.Log("1");
-
-
-            if (Input.GetKey(KeyCode.Mouse1))
+           //Debug.Log("1");
+            if (Input.GetKey(KeyCode.Mouse0))
             {
-
                 RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, characterPlayer);   //Raycast che controlla se il personaggio ha il suo layer
-                if (hit.collider != null)
+                Debug.Log(hit.collider);
+
+            if (hit.collider != null)
                 {
                     var Character = hit.collider.GetComponent<Character>();
                     float normalizedcurrentHP = (float)Character.currentHP / Character.maxHP;
@@ -147,10 +150,11 @@ public class BattleSystem2 : MonoBehaviour
     }
     public void OnAttackButton()
     {
-        if (state != BattleState.PLAYERTURN)
-            StartCoroutine(PlayerAtk());
         Debug.Log("Attack");
-            return;
+        StartCoroutine(PlayerAtk());
+        state = BattleState.PLAYERATK;
+       
+            
     }
 
     IEnumerator PlayerAtk()
@@ -159,18 +163,24 @@ public class BattleSystem2 : MonoBehaviour
         bool isGoing = false;
         while (!isGoing)
         {
-            if (Input.GetKey(KeyCode.Mouse1))
+            
+
+            if (Input.GetKey(KeyCode.Mouse0))
             {
                 RaycastHit2D enemyHit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, characterEnemy);
+                //Debug.Log(enemyHit.collider);
 
                 if (characterSelected != null && enemyHit.collider != null)
-                {
-                    enemyHit.collider.GetComponent<Character>();
+                {                  
+                    enemyHit.collider.GetComponent<Character>().TakeDamage(characterSelected.damage,characterSelected.attribute);
+                    Debug.Log("colpito");
                     state = BattleState.PLAYERTURN;
                     isGoing = true;
+                   
+                   
                 }
                 var Character = enemyHit.collider.GetComponent<Character>();
-                float normalizedcurrentHP = (float)Character.currentHP / Character.maxHP;
+                //float normalizedcurrentHP = (float)Character.currentHP / Character.maxHP;
                 //enemyHealtBarBackground.SetActive(true);
                 //healthBarEnemy.fillAmount = normalizedcurrentHP;
 
@@ -178,15 +188,38 @@ public class BattleSystem2 : MonoBehaviour
             yield return null;
         }
 
-        state = BattleState.ENEMYTURN;
-        EnemyTurn();
-               
-    }
-
-    void EnemyTurn()
-    {
+           if (enemyBattle.currentHP >= 0)
+           {
+            state = BattleState.ENEMYTURN;
+            Debug.Log("enemyturn");
+            EnemyTurn();
+           }
+            
+        //else
+        //    {
+        //        state = BattleState.ENEMYTURN;
+        //        EnemyTurn();
+        //    }
+        
+        //state = BattleState.ENEMYTURN;
+        
+        //EnemyTurn();
 
       
+
+    }
+
+   public void EnemyTurn()
+    {
+
+      int enemyRandomIndex = Random.Range(0,enemies.Count);
+      var enemy = enemies[enemyRandomIndex].GetComponent<Character>();
+      Debug.Log("nemico : " + enemies[enemyRandomIndex].name);
+     
+      int playerRandomIndex = Random.Range(0, players.Count);
+      var player = players[playerRandomIndex].GetComponent<Character>();
+      Debug.Log("player : " + players[playerRandomIndex].name);
+     
 
 
     }
