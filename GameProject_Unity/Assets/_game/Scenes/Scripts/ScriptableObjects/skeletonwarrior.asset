@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: skeletonwarrior
   m_EditorClassIdentifier: 
   Name: skeletonWarrior
-  HP: 0
-  MP: 0
-  spriteElement: {fileID: 0}
+  maxHp: 70
+  damage: 30
+  currentHP: 0
   playerPrefab: {fileID: 1083347087882096840, guid: 8c75932e071f93c44807096563da6055, type: 3}
   enemyPrefab: {fileID: 1083347087882096840, guid: 8c75932e071f93c44807096563da6055, type: 3}
   Character: {fileID: 1083347087882096840, guid: 8c75932e071f93c44807096563da6055, type: 3}
+  attribute: {fileID: 11400000, guid: 72838c0c5fa165043aab18e07fbc648d, type: 2}

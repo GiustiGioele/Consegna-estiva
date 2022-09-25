@@ -22,16 +22,16 @@ public class Character : MonoBehaviour
     {
         if (attribute.weakness.Contains(attributedmg))
         {
-            currentHP -= damage * 1.5f;
+         currentHP -= damage * 1.5f;
         }
-        else if (attributedmg.weakness.Contains(attribute)) //la debolezza dell'attacco è il mio elemento mi fa la metà x0.5
-            {
-                currentHP -= damage * 0.5f;
-            }
-            else
-            {
-                currentHP -= damage;
-            }
+         else if (attributedmg.weakness.Contains(attribute)) //la debolezza dell'attacco è il mio elemento mi fa la metà x0.5
+         {
+          currentHP -= damage * 0.5f;
+         }
+         else
+         {
+          currentHP -= damage;
+         }
 
         if (currentHP <= 0)
         {
@@ -39,8 +39,8 @@ public class Character : MonoBehaviour
         }
     }
        public void Die()
-    {
-        Destroy(gameObject);
-    }
+       {
+         Destroy(gameObject);
+       }
     
 }

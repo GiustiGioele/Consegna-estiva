@@ -7,7 +7,7 @@ public class Models : ScriptableObject
 {
     public string Name;
     public float maxHp;
-    public float MP;
+   
     public float damage;
     public float currentHP;
     

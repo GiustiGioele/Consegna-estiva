@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Archer
   m_EditorClassIdentifier: 
   Name: Archer
-  HP: 0
-  MP: 0
-  spriteElement: {fileID: 0}
+  maxHp: 100
+  damage: 20
+  currentHP: 0
   playerPrefab: {fileID: 7898999747603936944, guid: cdac9a96b9a83a7488d7e7f02bbd56a7, type: 3}
   enemyPrefab: {fileID: 7898999747603936944, guid: cdac9a96b9a83a7488d7e7f02bbd56a7, type: 3}
   Character: {fileID: 7898999747603936944, guid: cdac9a96b9a83a7488d7e7f02bbd56a7, type: 3}
+  attribute: {fileID: 11400000, guid: 56557d918793dc249a24324147ebe971, type: 2}

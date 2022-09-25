@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Magic
   m_EditorClassIdentifier: 
   attributeName: 
-  weakness: []
+  weakness:
+  - {fileID: 11400000, guid: 72838c0c5fa165043aab18e07fbc648d, type: 2}

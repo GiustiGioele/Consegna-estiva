@@ -21,77 +21,87 @@ public class BattleSystem2 : MonoBehaviour
     [SerializeField] LayerMask characterPlayer;
     [SerializeField] LayerMask characterEnemy;
     [SerializeField] Character characterSelected;
+
+    public Attributes attribute;
    
     public BattleState state;
 
     private void Start()                            
     {
         state = BattleState.START;
-        StartCoroutine(SetupBattle());
+        SetupBattle();
        
     }
 
-   IEnumerator SetupBattle ()
+    private void Update()
     {
+        if (state == BattleState.PLAYERTURN)
+            PlayerTurn();
+    }
+
+
+    public void SetupBattle()
+   {
         teamManager = FindObjectOfType<TeamManager>();
 
         for (int i = 0; i < playerBattleStation.Length; i++)
         {
             GameObject go = Instantiate(teamManager.player[i], playerBattleStation[i]);
-           //playerBattle = go.GetComponent<Character>();
+            playerBattle = go.GetComponent<Character>();
 
             GameObject enemyGo = Instantiate(teamManager.enemy[i], enemyBattleStation[i]);
             enemyGo.layer = LayerMask.NameToLayer("characterEnemy");
             //enemyBattle = enemyGo.GetComponent<Character>();
         }
-        playerHP.SetHp(playerBattle);
-        enemyHP.SetHp(enemyBattle);
+        //playerHP.SetHp(playerBattle);
+        //enemyHP.SetHp(enemyBattle);
 
-        yield return new WaitForSeconds(1f);
+       
 
         state = BattleState.PLAYERTURN;
         
-    }
+        
+   }
 
-    IEnumerator PlayerAttack()
-    {
-        bool isDead = enemyBattle.TakeDamage(playerBattle.damage);
+    //IEnumerator PlayerAttack()
+    //{
+    //     enemyBattle.TakeDamage(playerBattle.damage, playerBattle.attribute);
 
-       enemyHP.SetHP(enemyBattle.currentHP);          
+    //   enemyHP.SetHP(enemyBattle.currentHP);          
 
-        yield return new WaitForSeconds(1f);
+    //    yield return new WaitForSeconds(1f);
 
-        if (isDead)
-        {
-            state = BattleState.WON;
-            EndBattle();
-        }else
-        {
-            state = BattleState.ENEMYTURN;
-            StartCoroutine(EnemyTurn());
-        }
+    //    if (enemyBattle.currentHP <= 0)
+    //    {
+    //        state = BattleState.WON;
+    //        EndBattle();
+    //    }else
+    //    {
+    //        state = BattleState.ENEMYTURN;
+    //        StartCoroutine(EnemyTurn());
+    //    }
 
-        IEnumerator EnemyTurn()
-        {
-            yield return new WaitForSeconds(1f);
+    //    IEnumerator EnemyTurn()
+    //    {
+    //        yield return new WaitForSeconds(1f);
 
-          bool isDead =  playerBattle.TakeDamage(enemyBattle.damage);
+    //        playerBattle.TakeDamage(enemyBattle.damage, enemyBattle.attribute);
 
-            playerHP.SetHP(playerBattle.currentHP);
+    //        playerHP.SetHP(playerBattle.currentHP);
 
-            yield return new WaitForSeconds(1f);
+    //        yield return new WaitForSeconds(1f);
 
-            if(isDead)
-            {
-                state = BattleState.LOST;
-                EndBattle();
-            }
-            else
-            {
-                state= BattleState.PLAYERTURN;
-                PlayerTurn();
-            }
-        }
+    //        if(playerBattle.currentHP <= 0)
+    //        {
+    //            state = BattleState.LOST;
+    //            EndBattle();
+    //        }
+    //        else
+    //        {
+    //            state= BattleState.PLAYERTURN;
+    //            PlayerTurn();
+    //        }
+    //    }
 
         void EndBattle()
         {
@@ -104,34 +114,42 @@ public class BattleSystem2 : MonoBehaviour
             }
         }
 
-        void PlayerTurn()
-        {
+
+
+
+   public void  PlayerTurn()
+    {
+     
+           Debug.Log("1");
+
+
             if (Input.GetKey(KeyCode.Mouse1))
             {
 
                 RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, characterPlayer);   //Raycast che controlla se il personaggio ha il suo layer
-               if (hit.collider != null)
-               {
+                if (hit.collider != null)
+                {
                     var Character = hit.collider.GetComponent<Character>();
                     float normalizedcurrentHP = (float)Character.currentHP / Character.maxHP;
+                    Debug.Log(Character.name);
                     //healthBarBackground.SetActive(true);
                     //healthBarPplayer.fillAmount = normalizedHealth
                     //charcterSelected = Character;
                     //buttonPanel.SetActive(true);
 
 
-               }
-            }
+                }
+
            
 
-        }
+            }
         
     }
-
-   public void OnAttackButton()
+    public void OnAttackButton()
     {
         if (state != BattleState.PLAYERTURN)
             StartCoroutine(PlayerAtk());
+        Debug.Log("Attack");
             return;
     }
 

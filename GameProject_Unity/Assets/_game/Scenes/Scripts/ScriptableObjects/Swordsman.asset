@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Swordsman
   m_EditorClassIdentifier: 
   Name: Swordsman
-  HP: 0
-  MP: 0
-  spriteElement: {fileID: 0}
+  maxHp: 80
+  damage: 40
+  currentHP: 0
   playerPrefab: {fileID: 5255494163848898262, guid: f8d14fba9565ffe4db8bcf4a4ef34ad4, type: 3}
   enemyPrefab: {fileID: 5255494163848898262, guid: f8d14fba9565ffe4db8bcf4a4ef34ad4, type: 3}
   Character: {fileID: 3857784990515738366, guid: 6e3b9b0b5c7480549b4fd7436f9eaeb5, type: 3}
+  attribute: {fileID: 11400000, guid: 8e1e0876bec01224188d3142bd06d746, type: 2}

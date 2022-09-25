@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Skeleton
   m_EditorClassIdentifier: 
   attributeName: 
-  weakness: []
+  weakness:
+  - {fileID: 11400000, guid: 8e1e0876bec01224188d3142bd06d746, type: 2}
