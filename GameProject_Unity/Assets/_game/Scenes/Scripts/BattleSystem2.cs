@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum BattleState { START, PLAYERTURN, PLAYERATK, ENEMYATK, WON, LOST }
+public enum BattleState { START, PLAYERTURN, PLAYERATK, ENEMYATK, WON, LOSE }
 public class BattleSystem2 : MonoBehaviour
 {
     
@@ -23,10 +23,13 @@ public class BattleSystem2 : MonoBehaviour
     [SerializeField] LayerMask characterPlayer;
     [SerializeField] LayerMask characterEnemy;
     [SerializeField] Character characterSelected;
+    [SerializeField] Character enemiesCharacter;
 
     public Attributes attribute;
     public GameObject HealthBarBack;
-    public GameObject HealthBar;
+    public Text win;
+    public Text lose;
+    public Image HealthBar;
     public BattleState state;
     bool isGoing = false;
 
@@ -75,16 +78,16 @@ public class BattleSystem2 : MonoBehaviour
    }
 
     
-        void EndBattle()
-        {
-            if (state == BattleState.WON)
-            {
+        //void EndBattle()
+        //{
+        //    if (state == BattleState.WON)
+        //    {
              
-            }else if (state == BattleState.LOST)
-            {
+        //    }else if (state == BattleState.LOST)
+        //    {
 
-            }
-        }
+        //    }
+        //}
 
 
 
@@ -150,15 +153,27 @@ public class BattleSystem2 : MonoBehaviour
                     
                     var Character = enemyHit.collider.GetComponent<Character>();
                     float normalizedcurrentHP = (float)Character.currentHP / Character.maxHP;
+                    HealthBar.fillAmount = normalizedcurrentHP;
                     state = BattleState.ENEMYATK;
+
+                    if (characterSelected.currentHP <=0)
+                    {
+                        players.Remove(Character.gameObject);
+                        Character.gameObject.SetActive(false);
+                    }
+                    if (players.Count == 0)
+                    {
+                        state = BattleState.LOSE;
+                        lose.gameObject.SetActive(true);
+                    }
 
 
                 }
                 isGoing = true;
 
 
-                HealtBarBack.SetActive(true);
-                HealthBar.fillAmount = normalizedcurrentHP;
+                HealthBarBack.SetActive(true);
+               
 
             }
 
@@ -192,6 +207,18 @@ public class BattleSystem2 : MonoBehaviour
      player.TakeDamage(characterSelected.damage, characterSelected.specialDamage, characterSelected.attribute);
      float normalizedHealth = (float)player.currentHP / player.maxHP;
 
+        if (enemiesCharacter.currentHP <= 0)
+        {
+            enemies.Remove(enemiesCharacter.gameObject);
+            enemiesCharacter.gameObject.SetActive(false);
+        }
+
+        if (enemies.Count == 0)
+        {
+            state = BattleState.WON;
+            win.gameObject.SetActive(true);
+
+        }
 
      state = BattleState.PLAYERTURN;
 
