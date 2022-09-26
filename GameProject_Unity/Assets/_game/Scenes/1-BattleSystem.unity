@@ -258,7 +258,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &132382913
 Transform:
   m_ObjectHideFlags: 0
@@ -315,8 +315,8 @@ MonoBehaviour:
   enemiesCharacter: {fileID: 0}
   attribute: {fileID: 0}
   HealthBarBack: {fileID: 0}
-  win: {fileID: 0}
-  lose: {fileID: 0}
+  win: {fileID: 1410534445}
+  lose: {fileID: 1296009181}
   HealthBar: {fileID: 0}
   state: 0
 --- !u!1 &187196241

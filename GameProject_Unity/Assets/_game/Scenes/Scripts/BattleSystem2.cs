@@ -67,29 +67,12 @@ public class BattleSystem2 : MonoBehaviour
             enemyBattle = enemyGo.GetComponent<Character>();
             enemies.Add(enemyGo);
         }
-        //playerHP.SetHp(playerBattle);
-        //enemyHP.SetHp(enemyBattle);
-
-       
+      
 
         state = BattleState.PLAYERTURN;
         
         
    }
-
-    
-        //void EndBattle()
-        //{
-        //    if (state == BattleState.WON)
-        //    {
-             
-        //    }else if (state == BattleState.LOST)
-        //    {
-
-        //    }
-        //}
-
-
 
 
    public void  PlayerTurn()
