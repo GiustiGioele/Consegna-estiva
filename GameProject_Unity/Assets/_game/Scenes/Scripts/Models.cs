@@ -7,8 +7,8 @@ public class Models : ScriptableObject
 {
     public string Name;
     public float maxHp;
-   
     public float damage;
+    public float specialDamage;
     public float currentHP;
     
     public GameObject playerPrefab;

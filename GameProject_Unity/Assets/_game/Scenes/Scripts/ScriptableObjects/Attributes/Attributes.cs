@@ -9,4 +9,6 @@ public class Attributes : ScriptableObject
     public string attributeName;
     public List <Attributes> weakness;
 
+
+
 }

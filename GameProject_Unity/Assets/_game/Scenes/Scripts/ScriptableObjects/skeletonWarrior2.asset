@@ -15,7 +15,8 @@ MonoBehaviour:
   Name: skeletonWarrior2
   maxHp: 110
   damage: 15
-  currentHP: 0
+  specialDamage: 30
+  currentHP: 110
   playerPrefab: {fileID: 5550403740049913657, guid: 6fa73fd6e6549f545a2e1c8b322ab243, type: 3}
   enemyPrefab: {fileID: 5550403740049913657, guid: 6fa73fd6e6549f545a2e1c8b322ab243, type: 3}
   Character: {fileID: 5550403740049913657, guid: 6fa73fd6e6549f545a2e1c8b322ab243, type: 3}

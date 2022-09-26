@@ -6,6 +6,7 @@ public class Character : MonoBehaviour
 {
     public string unitName;
     public float damage;
+    public float specialDamage;
     public float maxHP;
     public float currentHP;
     public Attributes attribute;
@@ -15,6 +16,7 @@ public class Character : MonoBehaviour
     private void Start()
     {
         damage = models.damage;
+        specialDamage = models.specialDamage;
         maxHP = models.maxHp; 
         currentHP = models.currentHP;
         attribute = models.attribute;
@@ -23,7 +25,7 @@ public class Character : MonoBehaviour
 
     } 
 
-    public void TakeDamage (float damage, Attributes attributedmg)   
+    public void TakeDamage (float damage, float specialDamage, Attributes attributedmg)   
     {
         if (attribute.weakness.Contains(attributedmg))
         {
@@ -36,6 +38,7 @@ public class Character : MonoBehaviour
          else
          {
           currentHP -= damage;
+          currentHP -= specialDamage;
          }
 
         if (currentHP <= 0)

@@ -15,7 +15,8 @@ MonoBehaviour:
   Name: Archer
   maxHp: 100
   damage: 20
-  currentHP: 0
+  specialDamage: 25
+  currentHP: 100
   playerPrefab: {fileID: 7898999747603936944, guid: cdac9a96b9a83a7488d7e7f02bbd56a7, type: 3}
   enemyPrefab: {fileID: 7898999747603936944, guid: cdac9a96b9a83a7488d7e7f02bbd56a7, type: 3}
   Character: {fileID: 7898999747603936944, guid: cdac9a96b9a83a7488d7e7f02bbd56a7, type: 3}

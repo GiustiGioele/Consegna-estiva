@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum BattleState { START, PLAYERTURN, PLAYERATK, ENEMYTURN, ENEMYATK, WON, LOST }
+public enum BattleState { START, PLAYERTURN, PLAYERATK, ENEMYATK, WON, LOST }
 public class BattleSystem2 : MonoBehaviour
 {
     
@@ -25,8 +25,10 @@ public class BattleSystem2 : MonoBehaviour
     [SerializeField] Character characterSelected;
 
     public Attributes attribute;
-   
+    public GameObject HealthBarBack;
+    public GameObject HealthBar;
     public BattleState state;
+    bool isGoing = false;
 
     private void Start()                            
     {
@@ -39,6 +41,10 @@ public class BattleSystem2 : MonoBehaviour
     {
         if (state == BattleState.PLAYERTURN)
             PlayerTurn();
+         if (state == BattleState.ENEMYATK)
+            EnemyTurn();
+
+      
     }
 
 
@@ -68,51 +74,12 @@ public class BattleSystem2 : MonoBehaviour
         
    }
 
-    //IEnumerator PlayerAttack()
-    //{
-    //     enemyBattle.TakeDamage(playerBattle.damage, playerBattle.attribute);
-
-    //   enemyHP.SetHP(enemyBattle.currentHP);          
-
-    //    yield return new WaitForSeconds(1f);
-
-    //    if (enemyBattle.currentHP <= 0)
-    //    {
-    //        state = BattleState.WON;
-    //        EndBattle();
-    //    }else
-    //    {
-    //        state = BattleState.ENEMYTURN;
-    //        StartCoroutine(EnemyTurn());
-    //    }
-
-    //    IEnumerator EnemyTurn()
-    //    {
-    //        yield return new WaitForSeconds(1f);
-
-    //        playerBattle.TakeDamage(enemyBattle.damage, enemyBattle.attribute);
-
-    //        playerHP.SetHP(playerBattle.currentHP);
-
-    //        yield return new WaitForSeconds(1f);
-
-    //        if(playerBattle.currentHP <= 0)
-    //        {
-    //            state = BattleState.LOST;
-    //            EndBattle();
-    //        }
-    //        else
-    //        {
-    //            state= BattleState.PLAYERTURN;
-    //            PlayerTurn();
-    //        }
-    //    }
-
+    
         void EndBattle()
         {
             if (state == BattleState.WON)
             {
-
+             
             }else if (state == BattleState.LOST)
             {
 
@@ -123,44 +90,49 @@ public class BattleSystem2 : MonoBehaviour
 
 
    public void  PlayerTurn()
-    {
-           //Debug.Log("1");
+   {
+           
             if (Input.GetKey(KeyCode.Mouse0))
             {
                 RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, characterPlayer);   //Raycast che controlla se il personaggio ha il suo layer
                 Debug.Log(hit.collider);
 
-            if (hit.collider != null)
-                {
+                 if (hit.collider != null)
+                 {
                     var Character = hit.collider.GetComponent<Character>();
                     float normalizedcurrentHP = (float)Character.currentHP / Character.maxHP;
                     Debug.Log(Character.name);
-                    //healthBarBackground.SetActive(true);
-                    //healthBarPplayer.fillAmount = normalizedHealth
+                    HealthBarBack.SetActive(true);
+                    HealthBar.fillAmount = normalizedcurrentHP;
                     //charcterSelected = Character;
                     //buttonPanel.SetActive(true);
 
 
-                }
+                 }
 
            
 
             }
         
-    }
+   }
     public void OnAttackButton()
     {
         Debug.Log("Attack");
         StartCoroutine(PlayerAtk());
-        state = BattleState.PLAYERATK;
+        if (isGoing == true)
+        {
+            StopCoroutine(PlayerAtk());
+        }
+        
+        
        
             
     }
 
-    IEnumerator PlayerAtk()
+    public IEnumerator PlayerAtk()
     {
         state = BattleState.PLAYERATK;
-        bool isGoing = false;
+       
         while (!isGoing)
         {
             
@@ -168,59 +140,60 @@ public class BattleSystem2 : MonoBehaviour
             if (Input.GetKey(KeyCode.Mouse0))
             {
                 RaycastHit2D enemyHit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, characterEnemy);
-                //Debug.Log(enemyHit.collider);
+                Debug.Log(enemyHit.collider);
 
                 if (characterSelected != null && enemyHit.collider != null)
-                {                  
-                    enemyHit.collider.GetComponent<Character>().TakeDamage(characterSelected.damage,characterSelected.attribute);
-                    Debug.Log("colpito");
-                    state = BattleState.PLAYERTURN;
-                    isGoing = true;
+                {
                    
+                    enemyHit.collider.GetComponent<Character>().TakeDamage(characterSelected.damage, characterSelected.specialDamage, characterSelected.attribute);
                    
+                    
+                    var Character = enemyHit.collider.GetComponent<Character>();
+                    float normalizedcurrentHP = (float)Character.currentHP / Character.maxHP;
+                    state = BattleState.ENEMYATK;
+
+
                 }
-                var Character = enemyHit.collider.GetComponent<Character>();
-                //float normalizedcurrentHP = (float)Character.currentHP / Character.maxHP;
-                //enemyHealtBarBackground.SetActive(true);
-                //healthBarEnemy.fillAmount = normalizedcurrentHP;
+                isGoing = true;
+
+
+                HealtBarBack.SetActive(true);
+                HealthBar.fillAmount = normalizedcurrentHP;
 
             }
-            yield return null;
-        }
 
-           if (enemyBattle.currentHP >= 0)
-           {
-            state = BattleState.ENEMYTURN;
-            Debug.Log("enemyturn");
-            EnemyTurn();
-           }
+            yield return new WaitForSeconds(3f);
+        }
+        state = BattleState.ENEMYATK;
+        Debug.Log("enemyTurn");
+            StartCoroutine(EnemyTurn());
+            StopCoroutine(EnemyTurn());
+           
             
-        //else
-        //    {
-        //        state = BattleState.ENEMYTURN;
-        //        EnemyTurn();
-        //    }
-        
-        //state = BattleState.ENEMYTURN;
-        
-        //EnemyTurn();
+       
 
       
 
     }
 
-   public void EnemyTurn()
+   public IEnumerator EnemyTurn()
     {
+        yield return new WaitForSeconds(2f);
 
       int enemyRandomIndex = Random.Range(0,enemies.Count);
       var enemy = enemies[enemyRandomIndex].GetComponent<Character>();
       Debug.Log("nemico : " + enemies[enemyRandomIndex].name);
+      characterSelected = enemy;
      
       int playerRandomIndex = Random.Range(0, players.Count);
       var player = players[playerRandomIndex].GetComponent<Character>();
       Debug.Log("player : " + players[playerRandomIndex].name);
      
+     player.TakeDamage(characterSelected.damage, characterSelected.specialDamage, characterSelected.attribute);
+     float normalizedHealth = (float)player.currentHP / player.maxHP;
 
+
+     state = BattleState.PLAYERTURN;
 
     }
         
